@@ -17,8 +17,8 @@ Go into more detail about the specifics of the project and it delivers
 against the problem.
 
 Depending on project type the detail section should include:
-
- - [ ] Minimum Viable Product
- - [ ] Architecture
- - [ ] Assumptions
 -->
+
+### Minimum Viable Product
+### Architecture
+### Assumptions
