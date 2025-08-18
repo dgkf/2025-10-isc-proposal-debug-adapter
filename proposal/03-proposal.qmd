@@ -20,5 +20,25 @@ Depending on project type the detail section should include:
 -->
 
 ### Minimum Viable Product
+
+<!--
+What is the smallest thing you can build that delivers value to your users?
+-->
+
 ### Architecture
+
+<!--
+What does the high-level architecture look like?
+-->
+
 ### Assumptions
+
+<!--
+What assumptions are you making that, if proven false, would invalidate the project?
+-->
+
+### External dependencies
+
+<!--
+What external dependencies does the project have (e.g. libraries, services, other projects, etc.)?
+-->
