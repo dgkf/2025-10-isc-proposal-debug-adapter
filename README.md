@@ -47,11 +47,11 @@ This is a boilerplate repository that you will need to fork, title appropriately
 
 -   Use the "Use this template" button on GitHub
 -   Create a new repository with a name to reflect your proposal
--   Create a new Rstudio project from version control and use the git URL for the repo
+-   Create a new Positron/RStudio/IDE project from version control and use the git URL for the repo
 -   Write an overview of the proposal instead of this boilerplate for the README
--   Start completing the relevant Rmd pages of the proposal
+-   Start completing the relevant qmd pages of the proposal
 -   Render `isc-proposal.qmd` to build the document locally
--   Regularly commit and push the changes to github
+-   Regularly commit and push the changes to GitHub
 -   Solicit feedback and contributions from others
 
 ### Automatically generate your proposal

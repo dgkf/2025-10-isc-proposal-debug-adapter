@@ -1,6 +1,6 @@
 # The proposal
 <!--
-This is where the proposal should be outlined. 
+This is where the proposal should be outlined.
 -->
 
 ## Overview
@@ -13,7 +13,7 @@ section.
 
 ## Detail
 <!--
-Go into more detail about the specifics of the project and it delivers
+Go into more detail about the specifics of the project and how it delivers
 against the problem.
 
 Depending on project type the detail section should include:
