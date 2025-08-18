@@ -23,17 +23,17 @@ bibliography: references.bib
 This repository is currently being revisited.
 An update will be released in early September 2025.
 
-{{< include proposal/signatories.qmd >}}
+{{< include proposal/01-signatories.qmd >}}
 
-{{< include proposal/problemdefinition.qmd >}}
+{{< include proposal/02-problemdefinition.qmd >}}
 
-{{< include proposal/proposal.qmd >}}
+{{< include proposal/03-proposal.qmd >}}
 
-{{< include proposal/timeline.qmd >}}
+{{< include proposal/04-timeline.qmd >}}
 
-{{< include proposal/requirements.qmd >}}
+{{< include proposal/05-requirements.qmd >}}
 
-{{< include proposal/success.qmd >}}
+{{< include proposal/06-success.qmd >}}
 
 ::: refs
 :::
