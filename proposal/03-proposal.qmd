@@ -1,5 +1,9 @@
 # The proposal
 <!--
+How are you going to solve the problem? Include the concrete actions you
+will take and an estimated timeline. What are likely failure modes and
+how will you recover from them?
+
 This is where the proposal should be outlined.
 -->
 
@@ -9,6 +13,8 @@ At a high-level address what your proposal is and how it will address
 the problem identified. Highlight any benefits to the R Community that
 follow from solving the problem. This should be your most compelling
 section.
+
+Include concrete actions you will take and estimated timeline.
 -->
 
 ## Detail
