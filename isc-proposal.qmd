@@ -1,22 +1,27 @@
 ---
 title: "Proposal Title"
-author: 
+author:
   - name: Annie Easley
     orcid: 5555-5555-5555-5555
     affiliations:
       - "Lewis Research Center, National Aeronautics and Space Administration"
-    
+
 date: today
 date-format: iso
 format:
   html:
     embed-resources: true
   hikmah-pdf:
-    geometry: 
+    geometry:
       - left=1.25in
       - right=1.25in
 bibliography: references.bib
 ---
+
+# 🚧🚧🚧 UNDER CONSTRUCTION 🚧🚧🚧
+
+This repository is currently being revisited.
+An update will be released in early September 2025.
 
 {{< include proposal/signatories.qmd >}}
 
