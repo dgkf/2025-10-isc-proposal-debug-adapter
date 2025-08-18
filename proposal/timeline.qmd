@@ -2,7 +2,9 @@
 
 ## Start-up phase
 <!--
-Covering the planning phase, this section should provide a relatively detailed plan of how work will start on the project. This section is important because projects need to get up and running quickly.
+Covering the planning phase, this section should provide a relatively
+detailed plan of how work will start on the project. This section is
+important because projects need to get up and running quickly.
 
 
  - [ ] Setting up collaboration platform inc. code for contributors etc.
@@ -13,14 +15,18 @@ Covering the planning phase, this section should provide a relatively detailed p
 
 ## Technical delivery
 <!--
-Covering the actual delivery of the project this section should provide at least a high-level the implementation. 
+Covering the actual delivery of the project this section should
+provide at least a high-level the implementation.
 
-Including target dates is really important as you need to be committed and the ISC need to have a means of tracking delivery
+Including target dates is really important as you need to be committed
+and the ISC need to have a means of tracking delivery
 -->
 
 ## Other aspects
 <!--
-Covering non-technical activities like on-going publicity, paper preparation, discussion groups etc. that might be required to facilitate successful delivery of the project.
+Covering non-technical activities like on-going publicity, paper
+preparation, discussion groups etc. that might be required to
+facilitate successful delivery of the project.
 
  - [ ] Announcement post
  - [ ] Delivery blog post
