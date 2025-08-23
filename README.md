@@ -1,7 +1,4 @@
-# 🚧🚧🚧 UNDER CONSTRUCTION: isc-proposal 🚧🚧🚧
-
-This repository is currently being revisited.
-An update will be released in early September 2025.
+# isc-proposal
 
 [![build-status](https://github.com/YOUR-USERNAME/YOUR-REPOSITORY/actions/workflows/publish-proposal.yaml/badge.svg)](https://github.com/YOUR-USERNAME/YOUR-REPOSITORY/actions/workflows/publish-proposal.yaml)
 
