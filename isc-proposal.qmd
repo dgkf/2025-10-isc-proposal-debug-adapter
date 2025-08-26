@@ -33,7 +33,7 @@ An update will be released in early September 2025.
 
 {{< include proposal/04-timeline.qmd >}}
 
-{{< include proposal/06-success.qmd >}}
+{{< include proposal/05-success.qmd >}}
 
 ::: refs
 :::
