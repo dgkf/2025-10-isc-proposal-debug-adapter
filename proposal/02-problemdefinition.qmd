@@ -21,4 +21,95 @@ It is important to cover:
 -->
 ```
 
-An example in-text citation [@wickham2016].
+## The Debug-Adapter Protocol
+
+The debug-adapter protocol [@dap-spec] (DAP) is an open standard, proposed by
+Microsoft and popularized through VSCode. As VSCode seems to be the dominant
+choice of IDE[^vscode-domination], many languages have provided an
+implementation of this protocol as part of a VSCode extension that allows VSCode
+to feel like it has native knowledge of that particular language. Because of its
+ubiquity, many other IDEs and editors today support the DAP. These include, but
+are certainly not limited to, [vim](https://github.com/puremourning/vimspector),
+[neovim](https://github.com/mfussenegger/nvim-dap),
+[emacs](https://github.com/emacs-lsp/dap-mode),
+[helix](https://helix-editor.com/news/release-22-03-highlights/),
+[kakoune](https://github.com/jdugan6240/kak-dap), and [Eclipse
+IDE](https://projects.eclipse.org/projects/technology.lsp4e).
+
+R's debugging story is fairly unique among programming languages because of the
+incredible interactivity that users expects when working in an R prompt. A
+stateful global environment, the ability to dynamically affect the debug state
+and the interactivity afforded by the built-in debug prompt all make for a
+seamless debug experience from the console prompt, but at the cost of foregoing
+the visual experience of an IDE. Conversely, IDEs that leverage the DAP often
+assume that a static snippet of code is to be run and debugged, building a
+debugging experience around non-interactive code. We believe that the comfort
+and flexibility of R's command-line prompt can live alongside the DAP, allowing
+the DAP to attach to a running R session to use for debugging by hooking into
+the existing browser prompt.
+
+## Prior Art, Remaining Gaps
+
+This approach is novel among existing implementations of the DAP, both in
+`vscDebugger` [@vscDebugger] and `ark` [@ark], which both come with additional
+software requirements and tight coupling to their respective IDEs. `vscDebugger`
+is designed to work specifically with VSCode and relies on having a running
+JavaScript process which serves to intercept background R process debug prompt
+output and parse its content to resolve DAP requests. This mechanism is limited
+by what information is exposed in the debugger console output and can not attach
+to a running user session, meaning that any persistent state that R users might
+expect from their session is lost when debugging. `ark` addresses this problem
+by bundling the R kernel with the DAP server. However, this introduces another
+challenge because it now requires the IDE to communicate with what is
+effectively a new standard for serving both an interactive prompt and DAP
+server. This project aims to address both of these challenges by building an
+implementation that is R-native and can run within an active R session.
+
+Notable hurdles remaining in these projects include:
+
+* `ark`'s lack of support for breakpoints. [`dap_server.rs#L349-351`](https://github.com/posit-dev/ark/blob/fbbb713de3f4a222c4774cbabd53eaf1fb735c51/crates/ark/src/dap/dap_server.rs#L349-L351)
+  
+  > <sup> [`README.md`](https://github.com/posit-dev/ark/blob/main/README.md) </sup>  
+  > Note: Support for breakpoints is currently missing but you can use `debug()`,
+  > `debugonce()`, or `browser()` to drop into the debugger.
+
+* `vscDebugger` recognizes that current limitations with the `browser()` prompt
+  are a bottleneck to providing a pure R solution. [`vscDebugger #33`](https://github.com/ManuelHentschel/vscDebugger/issues/33#issuecomment-638733787)
+  
+* `vscDebugger`'s implementation of attach mode (the DAPs mode of interacting
+  with an existing interactive session) requires special care to manage debug
+  state. [`vscDebugger #193`](https://github.com/ManuelHentschel/VSCode-R-Debugger/issues/193#issuecomment-2735871666)
+
+This work is not intended to fully replace these projects, but rather to provide
+an alternative that prioritizes IDE agnosticism and works with the R Core to
+address any hurdles which prevent a complete DAP implementation. While
+convergence of approaches would be ideal, this work would be considered
+successful if it consolidated open implementation questions through a central
+channel.
+
+## Possible R Core Changes
+
+Although this project isn't predicated on changes to the R language itself, it
+is very possible that this work may inform future features for R's browser
+prompt, hooks and tracing functionality. Notably, R should be able to:
+
+1. Run code upon pausing and providing a browser prompt to the user. We intend
+   to execute code, opaque to the user, the sends information about the current
+   frame back to the IDE.
+2. Run code upon resuming execution. This will be used to signal that the IDE
+   should visually convey that code is currently executing.
+3. Set breakpoints in R functions in a way that does not interfere with the way
+   that expression-level or line-level breakpoint placement is synchronized with
+   the IDE.
+4. Provide a mechanism of stepping into R code without a source file.
+
+We hope to explore all of these capabilities, implement the best possible
+solution given R's current state and if necessary, propose changes that might
+make them more actionable in the future.
+
+For development, we plan to use a version of R which enables the
+`USE_BROWSER_HOOK` flag. Seeing as this feature has been gated by a compilation
+flag, we plan to provide feedback about how this feature enables the
+implementation of a more integrated debugging experience.
+
+[^vscode-domination]: [StackOverflow Developer Survey: "Integrated development environment"](https://survey.stackoverflow.co/2024/technology#most-popular-technologies-new-collab-tools)

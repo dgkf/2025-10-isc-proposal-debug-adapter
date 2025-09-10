@@ -1,4 +1,5 @@
 # Signatories
+
 <!--
 This section provides the ISC with a view of the support received from
 the community for a proposal. Acceptance isn't predicated on
@@ -10,6 +11,7 @@ are proposed.
 -->
 
 ## Project team
+
 <!--
 Who are the people responsible for actually delivering the project if
 the proposal gets accepted and are already signed up and rearing to
@@ -17,13 +19,40 @@ go? Briefly describe all participants and the skills they will bring
 to the project.
 -->
 
+### Doug Kelkhoff
+
+Long time R advocate with a passion for developer tooling. Doug has been
+involved in R Consortium projects since 2018 when Doug joined the R Validation
+Hub [@rvh], which he now chairs. Doug represents Genentech, Inc. on the board of
+the R Consortium, however this work is of personal interest and is not
+affiliated with his involvement in this capacity. Doug has a history of working
+on deeply technical projects that interface with the internals of R including
+[@typewriter] for runtime type-checking, [@testex] for embedding testable code
+alongside documentation, and by implementing an R interpreter [@r-rust]. Most
+relevant is his prior work on [@debugadapter].
+
+Doug is committed to making R an accessible language that provides effective
+tools regardless of IDE.
+
+### Pachá
+
+<!-- 
+TODO:
+  - If you plan to blog about this while we're working on it, I think that would
+    be a great addition. They value the social aspect of technical work,
+    especially if it draws attention to what the R Consortium funds.
+  - 
+-->
+
 ## Contributors
+
 <!--
 Who are the people who have actively helped with this proposal but
 won't necessarily be on the core project team later?
 -->
 
 ## Consulted
+
 <!--
 Who has been given the opportunity to provide feedback on the
 proposal? This should include any R Consortium & ISC members who the

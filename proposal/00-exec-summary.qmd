@@ -3,4 +3,43 @@
 <!--
 This section provides a condensed view of the entire proposal, one page long.
 It should be a comprehensive high-level overview that captures the essence of the proposal, including its goals, methods, expected outcomes, deliverables, and budget.
+
+TODO: add budget overview
 -->
+
+This work proposes the development of an R-native implementation of the
+debug-adapter protocol [@dap-spec] (DAP).
+
+The debug-adapter protocol is a widely supported standard, which outlines how
+an interactive development environment (IDE) can interact with a background
+process to manage language-specific debugging features. Hallmark features
+include breakpoint management, stepping through code, and viewing variables
+local to the scope being debugged. In R we have the luxury of debugging tools
+that are built-in to the core language, exposing all of these features at the
+command-line. However, this interface can be alienating to beginners, where the
+more visual interaction through an IDE can make these tools more accessible.
+
+While there are existing projects to implement the debug-adapter protocol,
+namely `vscDebugger` [@vscDebugger] and `ark` [@ark], both are limited in their
+scope and bring both additional software requirements. Neither is capable of
+providing a debugging experience in a way that is fully decoupled from the IDE.
+
+This work has been in slow development for some years. Author Doug Kelkhoff
+has produced a concept [@debugadapter] which proved the potential of 
+the project. While a few challenges were identified early on, the major
+bottlenecks have been resolved in recent versions of R. Specifically, the
+introduction of the development flag `USE_BROWSER_HOOK` allows effective
+interaction with the state of the debugger such that we can manage the debug
+state natively in R, without a parent process intercepting output and without
+requiring a new standard for surfacing a console. As a personal side project,
+this work unfortunately has largely stalled. Pursuing this effectively requires
+dedicated time, closer communication with the R Core to use and provide feedback
+on development features, and to thoroughly test the solution against a wide
+set of IDEs. To bring this project to fruition, I've partnered with Pachá.
+Together, we're pursuing funding to support Pachá while working on this project.
+
+As a result of this work we plan to (1) implement a DAP server that can be
+run within a running R session, (2) raise awareness within the R Core for
+the importance of having an R-native solution for this problem as a central part
+of any modern language ecosystem, and (3) provide feedback to the R Core team
+regarding the in-development tools for interfacing with the debug state.
