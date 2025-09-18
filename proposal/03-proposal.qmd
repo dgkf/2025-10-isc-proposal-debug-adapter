@@ -27,7 +27,7 @@ modification and experimentation with code as it is running.
 
 Despite R's long standing support for interactive debugging, the user experience
 has not changed significantly, largely resembling the debug experience of
-Common Lisp. Until recently, it has been difficult to build custom tooling
+Common Lisp. Although improving, it remains difficult to build custom tooling
 around the existing R debugging experience. The introduction of _browser hooks_,
 specifically, have provided a mechanism to inject additional code which can
 allow for arbitrarily complex actions to be taken during debugging. These tools
@@ -41,6 +41,15 @@ We are uniquely positioned to test new R features and provide active feedback to
 the R Core to drive the debugging experience forward. We plan to implement an
 R-native debug adapter server that is truly IDE agnostic while improving on the
 user experience by leveraging recent R enhancements related to the `browser()`.
+
+## Detail
+
+<!--
+Go into more detail about the specifics of the project and how it delivers
+against the problem.
+
+Depending on project type the detail section should include:
+-->
 
 We plan to implement a debugger experience that extends the R `browser()` to the
 IDE, mirroring state and allowing for interaction through either interface. When
@@ -58,19 +67,10 @@ implemented, a user may:
 6. Install the DAP as an R package for easier distribution.
 7. Build the DAP R package with minimal system dependencies.
 
-<!--
-TODO:
-  - timeline
--->
-
-## Detail
-
-<!--
-Go into more detail about the specifics of the project and how it delivers
-against the problem.
-
-Depending on project type the detail section should include:
--->
+We expect that this will require contributions to the R language itself, which we
+plan to first implement as a standalone, patched version of R with minimal changes
+in support of piloting the proposed capabilities. To proove the utility of these
+capabilities, we will develop a user-facing R package that implements a DAP server.
 
 ### Minimum Viable Product
 
@@ -81,29 +81,52 @@ What is the smallest thing you can build that delivers value to your users?
 Although our goal is to explore the limitations of a full DAP implementation
 in R, providing a _useful_ R-native DAP server is well within reach.
 
-`debugadapter` [@debugadapter] initially hit two major roadblocks that prevented
-the implementation of central DAP features. First, the DAP server should run in
-the background so that it remains responsive as the user continues to interact
-with the prompt. Second, it should hook into the `browser()` prompt to emit DAP
-messages. Both of these initial roadblocks have actionable paths forward.
+`debugadapter` [@debugadapter] initially hit four major roadblocks that prevented
+the implementation of central DAP features.
 
-While the initial architecture was quite complicated, this design can be
-drastically simplified. The first challenge can be overcome by using the `later`
-package to continue to synchronize the IDEs debugger state while the R prompt
-idles. Initial tests have been promising, suggesting that this might provide a
-vehicle for cutting out one stop of the DAP message relay. The second challenge
-has been reasonably addressed through the features exposed through the
-`USE_BROWSER_HOOK` compilation flag. 
+- First, the DAP server should run in the background so that it remains
+responsive as the user continues to interact with the prompt. This challenge has
+been largely resolved by a transition to using the `later` package's event loop
+to handle messages in the background.
+- Second, it should hook into the `browser()` prompt to emit DAP messages.
+This has been largely solved by use of the `browser.hook` option in R's devel
+version.
+- Third, that existing browser hooks require cumbersome acrobatics to
+effectively tease out all the necessary debugging information at the appropriate
+time. <!-- TODO: more detail --> 
+- Fourth, many breakpoints are difficult to set given that many copies of
+functions exist throughout an active R session and that not all code has proper
+source references.
 
 A minimum viable product would require:
 
-1. A rewrite of the DAP server to run in the background using `later`, instead
-   of as a separate R process that relays messages. This will make the 
-   architecture far simpler and provide a mechanism of accessing the user's
-   existing environment within the debug frame.
-2. Implement a _manual_ synchronization command that can be used in lieu of
-   R `devel`s `USE_BROWSER_HOOK`, which would also serve to make these features
-   release-ready should this flag be enabled by default in the future.
+1. That a DAP hosted in a user's R process be able to handle DAP messages even
+   while R is idling. We plan to use `later` to continue listening for messages.
+2. Use the existing `browser.hook` to handle as much of the DAP protocol as
+   possible.
+3. Identify gaps that are either untennable or overly complicated to implement
+   using only the existing `browser.hook`.
+
+We expect to additionally deliver:
+
+1. A mapping of the DAP protocol to the appropriate place in the `browser()` REPL
+   where we would ideally be able to provide protocol responses.
+2. A patched version of R that exposes hooks for executing code at these critical
+   points.
+3. An implementation of a DAP server as an R package to pilot these R internal
+   changes.
+
+Beyond our expectations, next steps would include:
+
+1. Further developing the patched version of R to expose C-level callbacks in
+   addition to R-level hooks.
+2. Exploration of ways that R may internally help to manage an R session's set
+   breakpoints.
+3. R internal support for breakpoints that affect code without a known source
+   reference.
+4. Additional options for customizing the browser prompt text (ie, `Browse>`)
+   allowing for more informative messaging to the user to indicate when code
+   is executing or paused at a breakpoint.
 
 ### Architecture
 
@@ -115,16 +138,23 @@ The majority of the DAP protocol itself is clearly specified. Because R
 provides a level of interactivity that isn't clearly defined within the scope of
 the DAP, some design details are left open for interpretation.
 
-As a proposal, we plan to design an architecture that has uses:
+We plan to build a DAP server, whose architecture relies on the following core
+features:
 
-1. A running R process, which manages interaction with a DAP server using a
-   `{later}` loop, executed periodically while the R process is idle.
-2. A background process, which serves as a message relay and buffer. This
-   background process allows us to immediately respond to DAP queries so that
-   the IDEs debugger functionality isn't stalled (or timing-out) while waiting
-   for the R session to idle and respond. This component isn't strictly
-   necessary, and a minimum viable product need not include it, but the user
-   experience would suffer as an IDE would report response timeout errors.
+1. A running, interactive R session, which manages interaction with a
+   DAP server using a `{later}` loop, executed periodically while the R process
+   is idle. We aim to make this transparent to a user, who may wish to start
+   the DAP listener on startup as part of a `.RProfile`.
+2. Various additional browser hooks, implemented as part of the R language, which
+   can support retrieval of the breadth of the DAP request data.
+3. Various R callback functions which hook into the `browser()` REPL's loop
+   to listen and respond to DAP client requests.
+
+These central pieces would amount to a native R DAP server implementation, which
+run in the background of a user-facing interactive R session. Our hope is that
+this allows for an experience akin to R's native `browser()` prompt, but with all
+the visual elements communicated through the supported UI of a user's preferred
+IDE.
 
 ```{mermaid}
 %%| label: attach-mode-diagram
@@ -189,10 +219,11 @@ there are assumptions which may limit its impact:
    help pave the way for both projects.
 3. We assume that `ark` intends to continue being shipped as a standalone
    binary, requiring that users go beyond a simple package install to enable
-   a debugger, leaving a gap for a more canonically installed R extension.
+   a debugger, leaving a gap for an implemntation as a more conventionally
+   distributed R extension.
 4. We assume that `ark` will continue to be provided as a combined Jupyter
    Kernel and DAP implementation, making it less accessible to IDEs beyond
-   Positron.
+   Positron, or limited by adoption of this protocol.
 5. We assume that the goals of `vscDebugger` continue to prioritize VSCode,
    leaving a gap for a more agnostic solution.
 
