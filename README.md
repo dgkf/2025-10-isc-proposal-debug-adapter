@@ -1,6 +1,6 @@
 # isc-proposal
 
-[![build-status](https://github.com/YOUR-USERNAME/YOUR-REPOSITORY/actions/workflows/publish-proposal.yaml/badge.svg)](https://github.com/YOUR-USERNAME/YOUR-REPOSITORY/actions/workflows/publish-proposal.yaml)
+[![build-status](https://github.com/dgkf/2025-10-isc-proposal-debug-adapter/actions/workflows/publish-proposal.yaml/badge.svg)](https://github.com/dgkf/2025-10-isc-proposal-debug-adapter/actions/workflows/publish-proposal.yaml)
 
 This repository is a boilerplate repository that helps you prepare your proposal for the [R Consortium](https://www.r-consortium.org).
 
