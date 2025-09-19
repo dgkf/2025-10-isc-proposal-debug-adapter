@@ -21,7 +21,7 @@ to the project.
 
 ### Doug Kelkhoff
 
-Long time R advocate with a passion for developer tooling. Doug has been
+Long time R advocate with a passion for developer tooling, Doug has been
 involved in R Consortium projects since 2018 when Doug joined the R Validation
 Hub [@rvh], which he now chairs. Doug represents Genentech, Inc. on the board of
 the R Consortium, however this work is of personal interest and is not
@@ -32,18 +32,34 @@ alongside documentation, and by implementing an R interpreter [@r-rust]. Most
 relevant is his prior work on [@debugadapter], which explored use of development
 features of R to support a more comprehensive implementation of the DAP.
 
-Doug is committed to making R an accessible language that provides effective
-tools regardless of IDE.
+The challenges faced during the development of this exploratory DAP server, and
+the ensuing conversations with the `ark` team at Posit, have been the motivating
+driver for this proposal, concluding that the current R internals could be made
+far more accommodating to the implementation of this standard.
 
-### Pachá
+Doug is committed to making R an accessible language that provides effective
+tools regardless of IDE. 
+
+### Mauricio Pachá Vargas Sepúlveda
 
 <!-- 
 TODO:
   - If you plan to blog about this while we're working on it, I think that would
     be a great addition. They value the social aspect of technical work,
     especially if it draws attention to what the R Consortium funds.
-  - 
 -->
+
+Pachá is an active member of the R community and has previously been a
+recipient of a R Consortium ISC grant for his work on [@cpparmadillo]
+([@isc-cpparmadillo]). He has experience interfacing with R and designing
+C-level tooling in the R ecosystem. Pachá will be the primary developer building
+out the proposed tooling, and will be supported and advised by Doug Kelkhoff.
+
+Pachá has relevant experience interfacing with R through its C-level APIs in the
+development of [@cpparmadillo]. Together, Pachá and Doug have investigated the
+implementation of the current `USE_BROWSER_HOOK` flag and `#ifdef` blocks and
+believe that mirroring this design for additional hooks is well within grasp of
+our capabilities as first time R internal contributors.
 
 ## Contributors
 
@@ -60,15 +76,25 @@ proposal? This should include any R Consortium & ISC members who the
 proposal has been discussed with.
 -->
 
-### Lionel Henry
+### Lionel Henry & Davis Vaughan of _Posit_
 
-<!--
-TODO
--->
+Lionel and Davis are employees of Posit and have recently been involved in the
+ongoing development of the `ark` kernel. They bring experience with both the DAP
+specification and the challenges of implementing it for `ark`.
 
-### Davis Vaughan
+They bring a depth of understanding informed both by the modern tooling built in
+`ark` as well as the historical challenges encountered in Posit's RStudio IDE.
+This knowledge will be invaluable to this project, as it emphasizes the ongoing
+challenges faced by implementations, even with considerable, sustained developer
+effort.
 
-<!--
-TODO
--->
+### Michael Lawrence of _R Core_
+
+Michael brings an awareness of R Core development practices and a familiarity
+with R Core expectations for new code contributions. Michael has along history
+as a member of R Core and representative of the R Foundation a the R Consortium.
+He is exceptionally capable of serving as a conduit to the R Core team to ensure
+that the scope of our work is kept in-line with these expectations and that the
+relevant parties are brought into the conversation to ensure that any proposed
+changes are effectively communicated.
 

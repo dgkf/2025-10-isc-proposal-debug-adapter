@@ -1,61 +1,50 @@
-# isc-proposal
+# Building a Path to a Modern R Debugger Interfaces
+
+_an ISC Proposal for Oct 2025_
 
 [![build-status](https://github.com/dgkf/2025-10-isc-proposal-debug-adapter/actions/workflows/publish-proposal.yaml/badge.svg)](https://github.com/dgkf/2025-10-isc-proposal-debug-adapter/actions/workflows/publish-proposal.yaml)
 
-This repository is a boilerplate repository that helps you prepare your proposal for the [R Consortium](https://www.r-consortium.org).
+Debugging from the R prompt provides many conveniences such as access to all the
+dynamicism of the debugger frame, a persistent user session, full control of
+where and how to enter the debugger and effective tools for resuming execution.
+
+However, if you've used a development environment that provides a visual debugger,
+you may have experienced the state falling out of sync, inconsistencies in the
+visible environments or been constrained to only debugging a full R script in
+isolation.
+
+The experience that IDEs are able to expose have long suffered these challenges
+and have made commendable progress while working around limitations of R's
+existing debugger tools. However, these solutions have required undo engineering
+effort and work around these limitations in fragile ways. With the advent of
+some internal debugging hooks in R `devel`, there is potential for these
+challenges to be smoothed over. Yet, exploration has proven that some friction
+points remain that prevent a truly comprehensive solution.
+
+This work aims to experiment with further changes that would allow for full
+coverage of the execution points required by modern debugging tools.
 
 ## Background
 
-Set up in 2015, the R Consortium is an organisation set up to help support the R Foundation, the R Community, and R users.
+Modern IDEs almost ubiquitously communicate with debuggers over a recent standard,
+the debug-adapter protocol. This language-agnostic standard has matured over
+recent years to provide a consistent and comprehensive debugging experience
+regardless of IDE.
 
-> The primary purpose of the R Consortium (collectively, the “Purpose”) is to:
->
->(a) advance the worldwide promotion of and support for the R open source language and environment as the preferred language for statistical computing and graphics (the “Environment”);
->
->(b) establish, maintain, seek support for, and develop infrastructure projects and technical and infrastructure collaboration initiatives related to the Environment, and such other initiatives as may be appropriate to support, enable and promote the Environment;
->
->(c) encourage and increase user adoption, involvement with, and contribution to, the Environment;
->
->(d) facilitate communication and collaboration among users and developers of the Environment, the R Consortium and the R Foundation for Statistical Computing (the “R Foundation”);
->
->(e) support and maintain policies set by the Board; and
->
->(f) undertake such other activities as may from time to time be appropriate to further the purposes and achieve the goals set forth above.
->
->In furtherance of these efforts, the R Consortium shall seek to solicit the participation of all interested parties on a fair, equitable and open basis.
+However, implementing this protocol requires that an implementation is capable of
+executing code at key points within the evaluation loop of a debugging session.
+To-date, there is only one hook available to developers. Although _possible_ to
+implement a DAP server with only this hook, it is by no means convenient, requiring
+considerable overhead to provide an interface that resembles the expected user
+experience.
 
-_Source: [R Consortium Bylaws, Section 1.4](https://r-consortium.org/rc-docs/R-Consortium-Bylaws-7-9-2024.pdf)_
-
-Delivery of the technical aspects for R Consortium's projects is overseen by the Infrastructure Steering Committee (ISC). The ISC is set up to receive, select, and manage projects that deliver upon the aims of the Consortium. The ISC will have an ongoing call for proposals and will select proposals to move into project stage approximately every six months. Within the process notes, it does say that if a proposal is unlikely to get funded then the proposers will be notified as soon as possible, partially so that re-submission can happen in the event fixable issues.
-
-## Proposals
-
-Here we detail useful guidance notes on making proposals to the ISC but you should always consult the [ISC Grant Program](https://r-consortium.org/all-projects/callforproposals.html) page as there could be updates.
-
-- Try to complete as many of the sections of this boilerplate document as possible. Each section is included either for practical purposes or has been specifically requested by the ISC
-- Add relevant additional sections, like the letter of support from an R Core member if you want a change to R itself
-- Proposals should be 2-5 pages when in PDF form
-- You *can* submit a proposal on your own, but it's really recommended to get engagement from the community (and the ISC) first
-- Proposals should be submitted through the form on the [ISC Grant Program](https://r-consortium.org/all-projects/callforproposals.html) page
-
-## Making your proposal
-
-This is a boilerplate repository that you will need to fork, title appropriately and start filling in.
-
--   Use the "Use this template" button on GitHub
--   Create a new repository with a name to reflect your proposal
--   Create a new Positron/RStudio/IDE project from version control and use the git URL for the repo
--   Write an overview of the proposal instead of this boilerplate for the README
--   Start completing the relevant qmd pages of the proposal
--   Render `isc-proposal.qmd` to build the document locally
--   Regularly commit and push the changes to GitHub
--   Solicit feedback and contributions from others
-
-### Automatically generate your proposal
-
-This repository comes with a GitHub actions setup to automatically render your proposal to HTML and PDF formats.  To take advantage of it, you must publish the proposal to GitHub pages interactively the first time.
-
-From the command line, run `quarto publish gh-pages isc-proposal.qmd`.  After this, the GitHub action should run every time you push a commit to the main branch. Your rendered proposal can then be viewed at https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/
+Following discussion with other developers who have deeply investigated the DAP,
+particularly those working on Posit's `ark`, we've aligned on a common set of
+minimal changes that would allow further exploration before committing to changes
+in R's internals. We believe that this project provides a vehicle both for
+exploring that implementation and simultaneously using them to implement a pilot
+DAP server as a mechanism of vetting the proposed changes before they are
+stabilized.
 
 ## License
 

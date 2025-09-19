@@ -2,9 +2,9 @@
 
 <!--
 This section provides a condensed view of the entire proposal, one page long.
-It should be a comprehensive high-level overview that captures the essence of the proposal, including its goals, methods, expected outcomes, deliverables, and budget.
-
-TODO: add budget overview
+It should be a comprehensive high-level overview that captures the essence of
+the proposal, including its goals, methods, expected outcomes, deliverables,
+and budget.
 -->
 
 This work proposes exploration of a more complete implementation of the
@@ -52,3 +52,6 @@ implementation (3) raise awareness within the R Core for the importance of
 having an R-native solution for this problem as a central part of any modern
 language ecosystem, and (4) provide feedback to the R Core team regarding the
 in-development tools for interfacing with the debug state.
+
+We are seeking **USD $<!-- TODO: Budget -->** to fund one developer (Pachá)
+for three months <!-- TODO: if this is intended to be your primary income, I think we should say that -->.
