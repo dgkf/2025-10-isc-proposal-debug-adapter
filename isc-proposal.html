@@ -8,7 +8,7 @@
 
 <meta name="author" content="Pachá">
 <meta name="author" content="Doug Kelkhoff">
-<meta name="dcterms.date" content="2025-09-18">
+<meta name="dcterms.date" content="2025-09-20">
 
 <title>Proposal Title</title>
 <style>
@@ -5112,7 +5112,7 @@ z-index: 1000;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-09-18</p>
+      <p class="date">2025-09-20</p>
     </div>
   </div>
   
@@ -5128,15 +5128,16 @@ z-index: 1000;
 <h1>Executive Summary</h1>
 <!--
 This section provides a condensed view of the entire proposal, one page long.
-It should be a comprehensive high-level overview that captures the essence of the proposal, including its goals, methods, expected outcomes, deliverables, and budget.
-
-TODO: add budget overview
+It should be a comprehensive high-level overview that captures the essence of
+the proposal, including its goals, methods, expected outcomes, deliverables,
+and budget.
 -->
 <p>This work proposes exploration of a more complete implementation of the debug-adapter protocol <span class="citation" data-cites="dap-spec">(<a href="#ref-dap-spec" role="doc-biblioref"><span>“Debug Adapter Protocol”</span> 2024</a>)</span> (DAP) protocol, which we anticipate will require changes to R internals. We plan to prepare a patch to R to expand the capabilities of <code>options(browser.hook)</code> (enabled using feature flag <code>USE_BROWSER_HOOK</code>) to expose hooks at appropriate points that would permit a more comprehensive and direct implementation of the DAP.</p>
 <p>The debug-adapter protocol is a widely supported standard, which specifies how an interactive development environment (IDE) can interact with a background process to manage language-specific debugging features. Hallmark features include breakpoint management, stepping through code, and viewing variables local to the scope being debugged. In R we have the luxury of debugging tools that are built-in to the core language, exposing all of these features at the command-line. However, this interface can be alienating to beginners, where the more visual interaction through an IDE can make these tools more accessible.</p>
 <p>While there are existing projects that implement the debug-adapter protocol, namely <code>vscDebugger</code> <span class="citation" data-cites="vscDebugger">(<a href="#ref-vscDebugger" role="doc-biblioref"><span>“<span class="nocase">vscDebugger</span>”</span> 2025</a>)</span> and <code>ark</code> <span class="citation" data-cites="ark">(<a href="#ref-ark" role="doc-biblioref"><span>“Ark, an r Kernel”</span> 2025</a>)</span>, both are limited in their scope and bring both additional software requirements. Neither is capable of providing a debugging experience in a way that is fully decoupled from the IDE.</p>
 <p>This work has been in slow development for some years. Author Doug Kelkhoff has produced a concept package <span class="citation" data-cites="debugadapter">(<a href="#ref-debugadapter" role="doc-biblioref"><span>“Debugadapter”</span> 2025</a>)</span> which proved the potential of the project. While a few challenges were identified early on, the major bottlenecks have been resolved in recent versions of R. Specifically, the introduction of the development flag <code>USE_BROWSER_HOOK</code> allows effective interaction with the state of the debugger such that we can manage the debug state natively in R, without a parent process intercepting output and without requiring a new standard for surfacing a console. However, even though this hook may make a proper debug interface possible, it is by no means convenient or stable. With only this hook, a implementation leveraging this hook is left to make many assumptions about the state of the debugger in order to present a intuitive browser-like prompt. Pursuing this work effectively requires dedicated time, closer communication with the R Core to use and provide feedback on development features, and to thoroughly test the solution against a wide set of IDEs. To bring this project to fruition, I’ve partnered with Pachá. Together, we’re pursuing funding to support Pachá while working on this project.</p>
 <p>As a result of this work we plan to (1) implement a proof-of-concept DAP server that can be run as a part of an interactive R session, (2) propose changes to R’s internals that would improve the ease and reliability of a DAP implementation (3) raise awareness within the R Core for the importance of having an R-native solution for this problem as a central part of any modern language ecosystem, and (4) provide feedback to the R Core team regarding the in-development tools for interfacing with the debug state.</p>
+<p>We are seeking <strong>USD $<!-- TODO: Budget --></strong> to fund one developer (Pachá) for three months <!-- TODO: if this is intended to be your primary income, I think we should say that -->.</p>
 </section>
 <section id="signatories" class="level1">
 <h1>Signatories</h1>
@@ -5159,18 +5160,20 @@ to the project.
 -->
 <section id="doug-kelkhoff" class="level3">
 <h3 class="anchored" data-anchor-id="doug-kelkhoff">Doug Kelkhoff</h3>
-<p>Long time R advocate with a passion for developer tooling. Doug has been involved in R Consortium projects since 2018 when Doug joined the R Validation Hub <span class="citation" data-cites="rvh">(<a href="#ref-rvh" role="doc-biblioref"><span>“R Validation Hub”</span> 2025</a>)</span>, which he now chairs. Doug represents Genentech, Inc. on the board of the R Consortium, however this work is of personal interest and is not affiliated with his involvement in this capacity. Doug has a history of working on deeply technical projects that interface with the internals of R including <span class="citation" data-cites="typewriter">(<a href="#ref-typewriter" role="doc-biblioref"><span>“Typewriter”</span> 2022</a>)</span> for runtime type-checking, <span class="citation" data-cites="testex">(<a href="#ref-testex" role="doc-biblioref"><span>“Testex”</span> 2024</a>)</span> for embedding testable code alongside documentation, and by implementing an R interpreter <span class="citation" data-cites="r-rust">(<a href="#ref-r-rust" role="doc-biblioref"><span>“An Experimental Implementation of r, with Embellishments”</span> 2024</a>)</span>. Most relevant is his prior work on <span class="citation" data-cites="debugadapter">(<a href="#ref-debugadapter" role="doc-biblioref"><span>“Debugadapter”</span> 2025</a>)</span>, which explored use of development features of R to support a more comprehensive implementation of the DAP.</p>
+<p>Long time R advocate with a passion for developer tooling, Doug has been involved in R Consortium projects since 2018 when Doug joined the R Validation Hub <span class="citation" data-cites="rvh">(<a href="#ref-rvh" role="doc-biblioref"><span>“R Validation Hub”</span> 2025</a>)</span>, which he now chairs. Doug represents Genentech, Inc. on the board of the R Consortium, however this work is of personal interest and is not affiliated with his involvement in this capacity. Doug has a history of working on deeply technical projects that interface with the internals of R including <span class="citation" data-cites="typewriter">(<a href="#ref-typewriter" role="doc-biblioref"><span>“Typewriter”</span> 2022</a>)</span> for runtime type-checking, <span class="citation" data-cites="testex">(<a href="#ref-testex" role="doc-biblioref"><span>“Testex”</span> 2024</a>)</span> for embedding testable code alongside documentation, and by implementing an R interpreter <span class="citation" data-cites="r-rust">(<a href="#ref-r-rust" role="doc-biblioref"><span>“An Experimental Implementation of r, with Embellishments”</span> 2024</a>)</span>. Most relevant is his prior work on <span class="citation" data-cites="debugadapter">(<a href="#ref-debugadapter" role="doc-biblioref"><span>“Debugadapter”</span> 2025</a>)</span>, which explored use of development features of R to support a more comprehensive implementation of the DAP.</p>
+<p>The challenges faced during the development of this exploratory DAP server, and the ensuing conversations with the <code>ark</code> team at Posit, have been the motivating driver for this proposal, concluding that the current R internals could be made far more accommodating to the implementation of this standard.</p>
 <p>Doug is committed to making R an accessible language that provides effective tools regardless of IDE.</p>
 </section>
-<section id="pachá" class="level3">
-<h3 class="anchored" data-anchor-id="pachá">Pachá</h3>
+<section id="mauricio-pachá-vargas-sepúlveda" class="level3">
+<h3 class="anchored" data-anchor-id="mauricio-pachá-vargas-sepúlveda">Mauricio Pachá Vargas Sepúlveda</h3>
 <!-- 
 TODO:
   - If you plan to blog about this while we're working on it, I think that would
     be a great addition. They value the social aspect of technical work,
     especially if it draws attention to what the R Consortium funds.
-  - 
 -->
+<p>Pachá is an active member of the R community and has previously been a recipient of a R Consortium ISC grant for his work on <span class="citation" data-cites="cpparmadillo">(<a href="#ref-cpparmadillo" role="doc-biblioref"><span>“Cpp11armadillo”</span> 2025</a>)</span> (<span class="citation" data-cites="isc-cpparmadillo">(<a href="#ref-isc-cpparmadillo" role="doc-biblioref"><span>“Funded ISC Grants (2024-2): Cpp11armadillo”</span> 2025</a>)</span>). He has experience interfacing with R and designing C-level tooling in the R ecosystem. Pachá will be the primary developer building out the proposed tooling, and will be supported and advised by Doug Kelkhoff.</p>
+<p>Pachá has relevant experience interfacing with R through its C-level APIs in the development of <span class="citation" data-cites="cpparmadillo">(<a href="#ref-cpparmadillo" role="doc-biblioref"><span>“Cpp11armadillo”</span> 2025</a>)</span>. Together, Pachá and Doug have investigated the implementation of the current <code>USE_BROWSER_HOOK</code> flag and <code>#ifdef</code> blocks and believe that mirroring this design for additional hooks is well within grasp of our capabilities as first time R internal contributors.</p>
 </section>
 </section>
 <section id="contributors" class="level2">
@@ -5187,17 +5190,14 @@ Who has been given the opportunity to provide feedback on the
 proposal? This should include any R Consortium & ISC members who the
 proposal has been discussed with.
 -->
-<section id="lionel-henry" class="level3">
-<h3 class="anchored" data-anchor-id="lionel-henry">Lionel Henry</h3>
-<!--
-TODO
--->
+<section id="lionel-henry-davis-vaughan-of-posit" class="level3">
+<h3 class="anchored" data-anchor-id="lionel-henry-davis-vaughan-of-posit">Lionel Henry &amp; Davis Vaughan of <em>Posit</em></h3>
+<p>Lionel and Davis are employees of Posit and have recently been involved in the ongoing development of the <code>ark</code> kernel. They bring experience with both the DAP specification and the challenges of implementing it for <code>ark</code>.</p>
+<p>They bring a depth of understanding informed both by the modern tooling built in <code>ark</code> as well as the historical challenges encountered in Posit’s RStudio IDE. This knowledge will be invaluable to this project, as it emphasizes the ongoing challenges faced by implementations, even with considerable, sustained developer effort.</p>
 </section>
-<section id="davis-vaughan" class="level3">
-<h3 class="anchored" data-anchor-id="davis-vaughan">Davis Vaughan</h3>
-<!--
-TODO
--->
+<section id="michael-lawrence-of-r-core" class="level3">
+<h3 class="anchored" data-anchor-id="michael-lawrence-of-r-core">Michael Lawrence of <em>R Core</em></h3>
+<p>Michael brings an awareness of R Core development practices and a familiarity with R Core expectations for new code contributions. Michael has along history as a member of R Core and representative of the R Foundation a the R Consortium. He is exceptionally capable of serving as a conduit to the R Core team to ensure that the scope of our work is kept in-line with these expectations and that the relevant parties are brought into the conversation to ensure that any proposed changes are effectively communicated.</p>
 </section>
 </section>
 </section>
@@ -5559,11 +5559,17 @@ and/or the community in general?
 <div id="ref-ark" class="csl-entry" role="listitem">
 <span>“Ark, an r Kernel.”</span> 2025. Posit. <a href="https://github.com/posit-dev/ark">https://github.com/posit-dev/ark</a>.
 </div>
+<div id="ref-cpparmadillo" class="csl-entry" role="listitem">
+<span>“Cpp11armadillo.”</span> 2025. pacha.dev. <a href="https://pacha.dev/cpp11armadillo/">https://pacha.dev/cpp11armadillo/</a>.
+</div>
 <div id="ref-dap-spec" class="csl-entry" role="listitem">
 <span>“Debug Adapter Protocol.”</span> 2024. Microsoft. <a href="https://microsoft.github.io/debug-adapter-protocol/">https://microsoft.github.io/debug-adapter-protocol/</a>.
 </div>
 <div id="ref-debugadapter" class="csl-entry" role="listitem">
 <span>“Debugadapter.”</span> 2025. codeberg.org/dgkf. <a href="https://codeberg.org/dgkf/debugadapter">https://codeberg.org/dgkf/debugadapter</a>.
+</div>
+<div id="ref-isc-cpparmadillo" class="csl-entry" role="listitem">
+<span>“Funded ISC Grants (2024-2): Cpp11armadillo.”</span> 2025. pacha.dev. <a href="https://r-consortium.org/all-projects/2024-group-2.html#cpp11armadillo-an-armadillo-interface-c">https://r-consortium.org/all-projects/2024-group-2.html#cpp11armadillo-an-armadillo-interface-c</a>.
 </div>
 <div id="ref-rvh" class="csl-entry" role="listitem">
 <span>“R Validation Hub.”</span> 2025. R Validation Hub. <a href="https://pharmar.org/">https://pharmar.org/</a>.
