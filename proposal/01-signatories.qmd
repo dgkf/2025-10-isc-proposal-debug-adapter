@@ -59,7 +59,7 @@ Pachá has relevant experience interfacing with R through its C-level APIs in th
 development of [@cpparmadillo]. Together, Pachá and Doug have investigated the
 implementation of the current `USE_BROWSER_HOOK` flag and `#ifdef` blocks and
 believe that mirroring this design for additional hooks is well within grasp of
-our capabilities as first time R internal contributors.
+our capabilities as first time R internal developers.
 
 ## Contributors
 

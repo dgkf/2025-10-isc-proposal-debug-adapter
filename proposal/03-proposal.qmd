@@ -118,13 +118,11 @@ We expect to additionally deliver:
 
 Beyond our expectations, next steps would include:
 
-1. Further developing the patched version of R to expose C-level callbacks in
-   addition to R-level hooks.
-2. Exploration of ways that R may internally help to manage an R session's set
+1. Exploration of ways that R may internally help to manage an R session's set
    breakpoints.
-3. R internal support for breakpoints that affect code without a known source
+2. R internal support for breakpoints that affect code without a known source
    reference.
-4. Additional options for customizing the browser prompt text (ie, `Browse>`)
+3. Additional options for customizing the browser prompt text (ie, `Browse>`)
    allowing for more informative messaging to the user to indicate when code
    is executing or paused at a breakpoint.
 

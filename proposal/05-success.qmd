@@ -47,15 +47,13 @@ R, our hope is that this work displays the importance of R internal support whic
 would excite a more experienced R core developer to help us integrate this work
 into the language properly.
 
-Moreover, we expect that broader review of our changes may introduce additional
-requirements. For example, discussions with the `ark` team have raised the
-importance of a C-level API to these injection points as a preferred interface
-from the `ark`.
-
-Further, R's mechanism of attaching namespaces -- and the proliferation of
-unique namespaces, especially through imported namespaces within loaded packages
--- means that setting breakpoints is a non-trivial task. Rigorously handling
-the synchronization of IDE-set breakpoints with browser, or traced R calls
-would likely require additional tooling within the R language itself. We do
-not plan to pursue this as part of this work, though it is necessary for a
-intuitive debugging experience when debugging in pathological cases.
+We anticipate that this work will turn up additional challenges. One particular
+challenge is the management of breakpoints, which likely requires more explicit
+internal handling within the R language to be universal. R's mechanism of
+attaching namespaces -- and the proliferation of unique namespaces, especially
+through imported namespaces within loaded packages -- means that setting
+breakpoints is a non-trivial task. Rigorously handling the synchronization
+of IDE-set breakpoints with browser, or traced R calls would likely require
+additional tooling within the R language itself. We do not plan to pursue
+this as part of this work, though it is necessary for a intuitive debugging
+experience when debugging in pathological cases.
