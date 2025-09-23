@@ -8,9 +8,9 @@
 
 <meta name="author" content="Pachá">
 <meta name="author" content="Doug Kelkhoff">
-<meta name="dcterms.date" content="2025-09-20">
+<meta name="dcterms.date" content="2025-09-23">
 
-<title>Proposal Title</title>
+<title>Building a Path to a Modern R Debugger Interfaces</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -5094,7 +5094,7 @@ z-index: 1000;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Proposal Title</h1>
+<h1 class="title">Building a Path to a Modern R Debugger Interfaces</h1>
 </div>
 
 
@@ -5112,7 +5112,7 @@ z-index: 1000;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-09-20</p>
+      <p class="date">2025-09-23</p>
     </div>
   </div>
   
@@ -5173,7 +5173,7 @@ TODO:
     especially if it draws attention to what the R Consortium funds.
 -->
 <p>Pachá is an active member of the R community and has previously been a recipient of a R Consortium ISC grant for his work on <span class="citation" data-cites="cpparmadillo">(<a href="#ref-cpparmadillo" role="doc-biblioref"><span>“Cpp11armadillo”</span> 2025</a>)</span> (<span class="citation" data-cites="isc-cpparmadillo">(<a href="#ref-isc-cpparmadillo" role="doc-biblioref"><span>“Funded ISC Grants (2024-2): Cpp11armadillo”</span> 2025</a>)</span>). He has experience interfacing with R and designing C-level tooling in the R ecosystem. Pachá will be the primary developer building out the proposed tooling, and will be supported and advised by Doug Kelkhoff.</p>
-<p>Pachá has relevant experience interfacing with R through its C-level APIs in the development of <span class="citation" data-cites="cpparmadillo">(<a href="#ref-cpparmadillo" role="doc-biblioref"><span>“Cpp11armadillo”</span> 2025</a>)</span>. Together, Pachá and Doug have investigated the implementation of the current <code>USE_BROWSER_HOOK</code> flag and <code>#ifdef</code> blocks and believe that mirroring this design for additional hooks is well within grasp of our capabilities as first time R internal contributors.</p>
+<p>Pachá has relevant experience interfacing with R through its C-level APIs in the development of <span class="citation" data-cites="cpparmadillo">(<a href="#ref-cpparmadillo" role="doc-biblioref"><span>“Cpp11armadillo”</span> 2025</a>)</span>. Together, Pachá and Doug have investigated the implementation of the current <code>USE_BROWSER_HOOK</code> flag and <code>#ifdef</code> blocks and believe that mirroring this design for additional hooks is well within grasp of our capabilities as first time R internal developers.</p>
 </section>
 </section>
 <section id="contributors" class="level2">
@@ -5193,7 +5193,7 @@ proposal has been discussed with.
 <section id="lionel-henry-davis-vaughan-of-posit" class="level3">
 <h3 class="anchored" data-anchor-id="lionel-henry-davis-vaughan-of-posit">Lionel Henry &amp; Davis Vaughan of <em>Posit</em></h3>
 <p>Lionel and Davis are employees of Posit and have recently been involved in the ongoing development of the <code>ark</code> kernel. They bring experience with both the DAP specification and the challenges of implementing it for <code>ark</code>.</p>
-<p>They bring a depth of understanding informed both by the modern tooling built in <code>ark</code> as well as the historical challenges encountered in Posit’s RStudio IDE. This knowledge will be invaluable to this project, as it emphasizes the ongoing challenges faced by implementations, even with considerable, sustained developer effort.</p>
+<p>Beyond <code>ark</code>, they are familiar with the historical challenges encountered in Posit’s RStudio IDE. This knowledge will be invaluable to this project, as it emphasizes the ongoing challenges faced by implementations, even with considerable, sustained developer effort.</p>
 </section>
 <section id="michael-lawrence-of-r-core" class="level3">
 <h3 class="anchored" data-anchor-id="michael-lawrence-of-r-core">Michael Lawrence of <em>R Core</em></h3>
@@ -5320,7 +5320,6 @@ What is the smallest thing you can build that delivers value to your users?
 </ol>
 <p>Beyond our expectations, next steps would include:</p>
 <ol type="1">
-<li>Further developing the patched version of R to expose C-level callbacks in addition to R-level hooks.</li>
 <li>Exploration of ways that R may internally help to manage an R session’s set breakpoints.</li>
 <li>R internal support for breakpoints that affect code without a known source reference.</li>
 <li>Additional options for customizing the browser prompt text (ie, <code>Browse&gt;</code>) allowing for more informative messaging to the user to indicate when code is executing or paused at a breakpoint.</li>
@@ -5542,8 +5541,7 @@ How could this be extended / developed in the future by yourself
 and/or the community in general?
 -->
 <p>We do not expect a patch that is developed primarily in service of exploration to be fully mature within these three months. To bring this work to fruition in R, our hope is that this work displays the importance of R internal support which would excite a more experienced R core developer to help us integrate this work into the language properly.</p>
-<p>Moreover, we expect that broader review of our changes may introduce additional requirements. For example, discussions with the <code>ark</code> team have raised the importance of a C-level API to these injection points as a preferred interface from the <code>ark</code>.</p>
-<p>Further, R’s mechanism of attaching namespaces – and the proliferation of unique namespaces, especially through imported namespaces within loaded packages – means that setting breakpoints is a non-trivial task. Rigorously handling the synchronization of IDE-set breakpoints with browser, or traced R calls would likely require additional tooling within the R language itself. We do not plan to pursue this as part of this work, though it is necessary for a intuitive debugging experience when debugging in pathological cases.</p>
+<p>We anticipate that this work will turn up additional challenges. One particular challenge is the management of breakpoints, which likely requires more explicit internal handling within the R language to be universal. R’s mechanism of attaching namespaces – and the proliferation of unique namespaces, especially through imported namespaces within loaded packages – means that setting breakpoints is a non-trivial task. Rigorously handling the synchronization of IDE-set breakpoints with browser, or traced R calls would likely require additional tooling within the R language itself. We do not plan to pursue this as part of this work, though it is necessary for a intuitive debugging experience when debugging in pathological cases.</p>
 <div class="refs">
 
 </div>
