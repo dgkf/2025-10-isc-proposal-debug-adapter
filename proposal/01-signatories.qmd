@@ -82,11 +82,10 @@ Lionel and Davis are employees of Posit and have recently been involved in the
 ongoing development of the `ark` kernel. They bring experience with both the DAP
 specification and the challenges of implementing it for `ark`.
 
-They bring a depth of understanding informed both by the modern tooling built in
-`ark` as well as the historical challenges encountered in Posit's RStudio IDE.
-This knowledge will be invaluable to this project, as it emphasizes the ongoing
-challenges faced by implementations, even with considerable, sustained developer
-effort.
+Beyond `ark`, they are familiar with the historical challenges encountered
+in Posit's RStudio IDE. This knowledge will be invaluable to this project,
+as it emphasizes the ongoing challenges faced by implementations, even with
+considerable, sustained developer effort.
 
 ### Michael Lawrence of _R Core_
 
