@@ -11,12 +11,12 @@ How will we know when success is achieved, what markers can we use
 along the way
 -->
 
-This work has a lot of room to grow well beyond what is achievable within three
-months.
+This work has significant potential that can be meaningfully advanced within six
+months, providing a solid foundation for future development.
 
-We would consider this step of the process successful if we can provide a clear
-path to the necessary R internal changes required for the implementation of a
-DAP server. 
+We would consider this phase of the project successful if we deliver a 
+production-ready R package that implements a comprehensive DAP server, along
+with the necessary R internal changes to support it. 
 
 ## Definition of done
 
@@ -24,15 +24,23 @@ DAP server.
 What does success look like?
 -->
 
-Although aligning on a path forward is largely a communication goal, being
-confident in that path requires experimentation. We would consider our part done
-after we have proposed changes implemented in a patch to R, and have developed
-a pilot implementation to the point that we can be confident that it would be
-able to fully cover any reasonable parts of the DAP specification.
+Although creating a production-ready DAP implementation is ambitious, the six-month
+timeline allows for thorough development and testing. We would consider our work
+complete after we have:
 
-Ideally, users in any editor that supports the DAP would have a realistic
-path to communicating with our pilot project as the DAP server, and would be
-able to interact with an R session in a way that feels native to R.
+1. **Delivered enhanced R internal capabilities** - A well-tested patch to R that
+   extends browser hooks beyond current `USE_BROWSER_HOOKS` functionality
+2. **Implemented a comprehensive DAP server** - An R package that covers all core
+   DAP protocol features including breakpoints, stepping, variable inspection,
+   and evaluation
+3. **Demonstrated cross-IDE compatibility** - Verified functionality across
+   multiple IDEs (VSCode, vim/neovim, emacs) with documented setup instructions
+4. **Established R Core collaboration** - Clear communication with R Core about
+   integration path and received preliminary feedback on our proposed changes
+
+The extended timeline allows us to move beyond proof-of-concept to a solution
+that users could realistically adopt, while maintaining the exploratory spirit
+that will inform future R language development.
 
 ## Future work
 
@@ -41,19 +49,25 @@ How could this be extended / developed in the future by yourself
 and/or the community in general?
 -->
 
-We do not expect a patch that is developed primarily in service of exploration
-to be fully mature within these three months. To bring this work to fruition in
-R, our hope is that this work displays the importance of R internal support which
-would excite a more experienced R core developer to help us integrate this work
-into the language properly.
+With a six-month development cycle, this work provides a strong foundation that
+the R community can build upon. The extended timeline allows us to:
 
-We anticipate that this work will turn up additional challenges. One particular
-challenge is the management of breakpoints, which likely requires more explicit
-internal handling within the R language to be universal. R's mechanism of
-attaching namespaces -- and the proliferation of unique namespaces, especially
-through imported namespaces within loaded packages -- means that setting
-breakpoints is a non-trivial task. Rigorously handling the synchronization
-of IDE-set breakpoints with browser, or traced R calls would likely require
-additional tooling within the R language itself. We do not plan to pursue
-this as part of this work, though it is necessary for a intuitive debugging
-experience when debugging in pathological cases.
+**Immediate Impact (Months 1-6):**
+- Deliver a working DAP implementation that users can install and use
+- Provide clear documentation and integration guides for multiple IDEs
+- Establish patterns and practices for R-native IDE integration
+
+**Medium-term Impact (6-12 months post-completion):**
+- Support community adoption and gather user feedback for refinement
+- Work with R Core on integration of our proposed language changes
+- Facilitate alignment between existing DAP projects (`vscDebugger`, `ark`)
+
+**Long-term Vision:**
+- Our implementation becomes the foundation for R's standard debugging interface
+- R Core adopts and maintains the enhanced browser hook infrastructure
+- The R ecosystem benefits from unified, cross-IDE debugging capabilities
+
+We anticipate that the additional development time will reveal and address
+implementation challenges that a shorter timeline would miss, particularly
+around breakpoint management in complex R environments and synchronization
+between IDE and console debugging interfaces.

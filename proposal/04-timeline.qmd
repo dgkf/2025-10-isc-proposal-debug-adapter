@@ -39,30 +39,46 @@ Including target dates is really important as you need to be committed
 and the ISC need to have a means of tracking delivery
 -->
 
-### Planning Deliverables (through week 1)
+### Phase 1: Planning and Analysis (September 2025)
 
-- Providing a mapping of the DAP specification to where in the R REPL
-  loop the requested information is more meaningfully gathered. Subject
-  to change, this is expected to be best represented as a workflow
-  diagram that can be used as reference for other projects.
-- Signatories will familiarize themselves more deeply with existing
-  implementations and scope development next steps. This will largely
-  be organized through issues filed alongside a source control project.
+- **Week 1-2:** Complete mapping of the DAP specification to the R REPL browser
+  loop, identifying all necessary touchpoints and data requirements
+- **Week 3-4:** Deep analysis of existing implementations (`vscDebugger`, `ark`)
+  to understand current limitations and opportunities for improvement
+- **Deliverable:** Comprehensive technical specification document with workflow
+  diagrams and gap analysis
 
-### Preparatory Development (through month 1)
+### Phase 2: Core Infrastructure Development (October - November 2025)
 
-- Implement the necessary browser hooks in a patched version of R
-  to fully cover the implementation of a DAP.
-- Explore using `later` to listen for DAP requests while R idles. 
+- **Month 2:** Implement enhanced browser hooks in a patched version of R,
+  extending beyond current `USE_BROWSER_HOOKS` capabilities
+- **Month 3:** Develop the foundational DAP server architecture using `later`
+  for background message handling and core protocol implementation
+- **Deliverable:** Working R patch with enhanced debugging hooks and basic
+  DAP server framework
 
-### DAP Server Proof-of-Concept Development (through month 3)
+### Phase 3: DAP Protocol Implementation (December 2025 - January 2026)
 
-- Continue with the implementation of a proof-of-concept DAP server,
-  implemented as an R package. Aim to support all reasonably achievable parts
-  of the DAP specification.
-- Share patched version of R for broader feedback. With support from R core,
-  invite review and further development.
-- Feature communication (see below)
+- **Month 4:** Implement core DAP request handlers (threads, stackTrace,
+  scopes, variables, evaluate)
+- **Month 5:** Add stepping functionality (stepIn, stepOut, stepOver, continue)
+  and breakpoint management
+- **Deliverable:** Feature-complete DAP server supporting majority of
+  protocol specification
+
+### Phase 4: Integration and Testing (February 2026)
+
+- **Month 6:** Comprehensive testing across multiple IDEs (VSCode, vim/neovim,
+  emacs), performance optimization, and edge case handling
+- **Final weeks:** Documentation, packaging, and preparation for broader
+  community feedback
+- **Deliverable:** Production-ready R package with comprehensive documentation
+
+### Phase 5: Community Engagement and Handoff (March 2026)
+
+- Share completed work with R Core for integration discussions
+- Coordinate with `vscDebugger` and `ark` teams for potential convergence
+- Publish technical blog posts and present findings to broader R community
 
 ## Other aspects
 
@@ -83,21 +99,30 @@ to be shared quarterly on the R Consortium blog.
 ### Communication during development
 
 As this is largely exploratory work, our primary stakeholders are active
-DAP developers. We plan to make materials broadly available, but with an
-emphasis on distributing to this particular audience. This includes our
-mapping of the DAP specification to the `browser()` REPL loop, R internal
-changes and pilot server implementation leveraging these changes.
+DAP developers and R Core team members. We plan to make materials broadly 
+available throughout the 6-month development cycle, with structured engagement
+at key milestones:
+
+- **Month 2:** Share technical specification and R patch proposal with R Core
+- **Month 4:** Interim progress report and community feedback session
+- **Month 6:** Final presentation to R Core and broader R community
+
+This includes our mapping of the DAP specification to the `browser()` REPL loop,
+R internal changes, and pilot server implementation leveraging these changes.
 
 ### Broader communication
 
-If we garner positive feedback from R Core developers which would indicate
-a high likelihood of adoption of our proposed patch changes, we would want to
-write a technical blog post about the challenges faced across implementations,
-and how the ISC process provided a vehicle for an agnostic path forward.
+With the extended timeline, we plan quarterly R Consortium blog posts to share:
+- **Q4 2025:** Project kickoff and technical approach
+- **Q1 2026:** Progress update and early findings
+- **Q2 2026:** Final results and next steps for community adoption
 
-<!--
-TODO: pashadev blog post? and social media
--->
+If we garner positive feedback from R Core developers indicating high likelihood
+of adoption of our proposed patch changes, we will write a comprehensive
+technical blog post about the challenges faced across implementations, and how
+the ISC process provided a vehicle for an agnostic path forward.
+
+pacha.dev/blog post (re-post with the R Consortium?)
 
 ## Budget & funding plan
 
@@ -117,11 +142,11 @@ how funds are used for each project separately. If in doubt, please reach
 out to us.
 -->
 
-We are proposing work that we expect to take approximately three months.
-Given the availability of the consulting signatories, we are requesting
-funds to support one developer, Mauricio, at 50% time for three months.
-Given the technical breadth and depth of the work, we are requesting
-**USD $<!-- TODO -->** to support them through this project.
+We are proposing work that we expect to take approximately six months, starting
+in September 2025. Given the technical complexity and the need for thorough
+R Core integration, we are requesting funds to support one developer, Mauricio,
+at 50% time for six months. Given the technical breadth and depth of the work,
+we are requesting **USD $5,500** to support them through this project.
 
 This number was selected after reviewing previous years' ISC grant
 recipients and balancing a reasonably scoped ISC grant against salary
