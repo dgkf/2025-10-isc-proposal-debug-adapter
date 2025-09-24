@@ -97,3 +97,13 @@ that the scope of our work is kept in-line with these expectations and that the
 relevant parties are brought into the conversation to ensure that any proposed
 changes are effectively communicated.
 
+### Manuel Hentschel, developer of `vscDebugger`
+
+Manuel has been the primary maintainer of [@vscDebugger], which provides an
+implementation of the DAP for VSCode. `vscDebugger` has been available since
+2020 and has exercised many creative solutions to the limitations of R's
+browser, allowing for a servicable debugging experience in VSCode. Manuel has
+reviewed the representations of `vscDebugger` and supports the work outlined
+in this proposal as an avenue to more actionable debugger development.
+
+We plan to include Manuel in further discussions throughout this project.
