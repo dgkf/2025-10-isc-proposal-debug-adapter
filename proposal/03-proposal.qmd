@@ -170,7 +170,7 @@ sequenceDiagram
 
 participant user as User
 participant ide  as Client <br> (IDE)
-participant dap  as DAP Server Proxy <br> (Message Buffer)
+participant dap  as DAP Server <br> (Background Task)
 participant r    as R Prompt <br> (Console)
 
 user->>ide: User starts IDE
