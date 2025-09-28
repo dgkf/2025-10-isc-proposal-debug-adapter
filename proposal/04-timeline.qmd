@@ -39,42 +39,41 @@ Including target dates is really important as you need to be committed
 and the ISC need to have a means of tracking delivery
 -->
 
-### Phase 1: Planning and Analysis (September 2025)
+### Submission Preparation: Planning and Analysis (September 2025)
 
-- **Week 1-2:** Complete mapping of the DAP specification to the R REPL browser
+- Complete mapping of the DAP specification to the R REPL browser
   loop, identifying all necessary touchpoints and data requirements
-- **Week 3-4:** Deep analysis of existing implementations (`vscDebugger`, `ark`)
+- Analysis of existing implementations (`vscDebugger`, `ark`)
   to understand current limitations and opportunities for improvement
 - **Deliverable:** Comprehensive technical specification document with workflow
   diagrams and gap analysis
 
-### Phase 2: Core Infrastructure Development (October - November 2025)
+### Phase 1: Core Infrastructure Development (November 2025)
 
-- **Month 2:** Implement enhanced browser hooks in a patched version of R,
+- Implement enhanced browser hooks in a patched version of R,
   extending beyond current `USE_BROWSER_HOOKS` capabilities
-- **Month 3:** Develop the foundational DAP server architecture using `later`
+- Develop the foundational DAP server architecture using `later`
   for background message handling and core protocol implementation
 - **Deliverable:** Working R patch with enhanced debugging hooks and basic
   DAP server framework
 
-### Phase 3: DAP Protocol Implementation (December 2025 - January 2026)
+### Phase 2: DAP Protocol Implementation (December 2025)
 
-- **Month 4:** Implement core DAP request handlers (threads, stackTrace,
-  scopes, variables, evaluate)
-- **Month 5:** Add stepping functionality (stepIn, stepOut, stepOver, continue)
+- Implement core DAP request handlers (threads, stackTrace, scopes, variables, evaluate)
+- Add stepping functionality (stepIn, stepOut, stepOver, continue)
   and breakpoint management
 - **Deliverable:** Feature-complete DAP server supporting majority of
   protocol specification
 
-### Phase 4: Integration and Testing (February 2026)
+### Phase 3: Integration and Testing (January 2026)
 
-- **Month 6:** Comprehensive testing across multiple IDEs (VSCode, vim/neovim,
+- Comprehensive testing across multiple IDEs (VSCode, vim/neovim,
   emacs), performance optimization, and edge case handling
-- **Final weeks:** Documentation, packaging, and preparation for broader
+- Documentation, packaging, and preparation for broader
   community feedback
-- **Deliverable:** Production-ready R package with comprehensive documentation
+- **Deliverable:** Production-ready code with comprehensive documentation
 
-### Phase 5: Community Engagement and Handoff (March 2026)
+### Post-Complextion Step: Community Engagement and Handoff (January - February 2026)
 
 - Share completed work with R Core for integration discussions
 - Coordinate with `vscDebugger` and `ark` teams for potential convergence
@@ -99,30 +98,30 @@ to be shared quarterly on the R Consortium blog.
 ### Communication during development
 
 As this is largely exploratory work, our primary stakeholders are active
-DAP developers and R Core team members. We plan to make materials broadly 
-available throughout the 6-month development cycle, with structured engagement
+DAP developers and R Core team members. We plan to make materials broadly
+available throughout the 3-month development cycle, with structured engagement
 at key milestones:
 
-- **Month 2:** Share technical specification and R patch proposal with R Core
-- **Month 4:** Interim progress report and community feedback session
-- **Month 6:** Final presentation to R Core and broader R community
+- **Month 1:** Share technical specification and R patch proposal with R Core
+- **Month 2:** Interim progress report and community feedback session
+- **Month 3:** Final presentation to R Core and broader R community
 
 This includes our mapping of the DAP specification to the `browser()` REPL loop,
 R internal changes, and pilot server implementation leveraging these changes.
 
 ### Broader communication
 
-With the extended timeline, we plan quarterly R Consortium blog posts to share:
-- **Q4 2025:** Project kickoff and technical approach
-- **Q1 2026:** Progress update and early findings
-- **Q2 2026:** Final results and next steps for community adoption
+With the extended timeline, we plan montly blog posts to share:
+- November 2025: Project kickoff and technical approach
+- December 2025: Progress update and early findings
+- January 2026: Final results and next steps for community adoption
 
 If we garner positive feedback from R Core developers indicating high likelihood
 of adoption of our proposed patch changes, we will write a comprehensive
 technical blog post about the challenges faced across implementations, and how
 the ISC process provided a vehicle for an agnostic path forward.
 
-pacha.dev/blog post (re-post with the R Consortium?)
+The goal is to post through pacha.dev/blog and re-post with the R Consortium.
 
 ## Budget & funding plan
 
@@ -142,11 +141,11 @@ how funds are used for each project separately. If in doubt, please reach
 out to us.
 -->
 
-We are proposing work that we expect to take approximately six months, starting
-in September 2025. Given the technical complexity and the need for thorough
+We are proposing work that we expect to take approximately three months, starting
+in October 2025. Given the technical complexity and the need for thorough
 R Core integration, we are requesting funds to support one developer, Mauricio,
-at 50% time for six months. Given the technical breadth and depth of the work,
-we are requesting **USD $5,500** to support them through this project.
+at 50% time for three months. Given the technical breadth and depth of the work,
+we are requesting **USD $5,240** to support them through this project.
 
 This number was selected after reviewing previous years' ISC grant
 recipients and balancing a reasonably scoped ISC grant against salary
