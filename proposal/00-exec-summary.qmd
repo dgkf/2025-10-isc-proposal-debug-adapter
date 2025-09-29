@@ -53,5 +53,4 @@ having an R-native solution for this problem as a central part of any modern
 language ecosystem, and (4) provide feedback to the R Core team regarding the
 in-development tools for interfacing with the debug state.
 
-We are seeking **USD $<!-- TODO: Budget -->** to fund one developer (Pachá)
-for three months <!-- TODO: if this is intended to be your primary income, I think we should say that -->.
+We are seeking **USD $5,240** to fund one developer (Pachá) for three months.

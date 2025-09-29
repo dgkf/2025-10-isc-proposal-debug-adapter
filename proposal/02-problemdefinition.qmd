@@ -84,8 +84,10 @@ Notable hurdles remaining in these projects include:
   are a bottleneck to providing a pure R solution. [`vscDebugger #33`](https://github.com/ManuelHentschel/vscDebugger/issues/33#issuecomment-638733787)
   
 * `vscDebugger`'s implementation of attach mode (the DAPs mode of interacting
-  with an existing interactive session) requires special care to manage debug
-  state. [`vscDebugger #193`](https://github.com/ManuelHentschel/VSCode-R-Debugger/issues/193#issuecomment-2735871666)
+  with an existing interactive session) requires special care on the part of the
+  user to manage debug state. [`vscDebugger
+  #193`](https://github.com/ManuelHentschel/VSCode-R-Debugger/issues/193#issueco
+  mment-2735871666)
 
 This work is not intended to fully replace these projects, but rather to provide
 an alternative that prioritizes IDE agnosticism and works with the R Core to
@@ -93,7 +95,8 @@ address any hurdles which prevent a complete DAP implementation. While
 convergence of approaches would be ideal, this work would be considered
 successful if it consolidated open implementation questions through a central
 channel and aligned projects on solutions that would resolve these challenges
-across the board.
+across the board. Each of these projects stands to benefit from exposing
+additional debug hooks.
 
 ## Possible R Core Changes
 
@@ -102,7 +105,7 @@ is very possible that this work may inform future features for R's browser
 prompt, hooks and tracing functionality. Notably, R should be able to:
 
 1. Run code upon pausing and providing a browser prompt to the user. We intend
-   to execute code, opaque to the user, the sends information about the current
+   to execute code, opaque to the user, that sends information about the current
    frame back to the IDE.
 2. Run code upon resuming execution. This will be used to signal that the IDE
    should visually convey that code is currently executing.
@@ -119,6 +122,9 @@ For development, we plan to use a version of R which enables the
 `USE_BROWSER_HOOK` flag, and possibly extend this feature to support additional
 code execution points. Seeing as this feature has been gated by a compilation
 flag, we plan to provide feedback about how this feature enables the
-implementation of a more integrated debugging experience.
+implementation of a more integrated debugging experience. Breakpoint management,
+though a nice-to-have feature for a more stable debugging experience, would
+require more substantial changes to R's internals and will be addressed only
+if time allows.
 
 [^vscode-adoption]: [StackOverflow Developer Survey: "Integrated development environment"](https://survey.stackoverflow.co/2024/technology#most-popular-technologies-new-collab-tools)

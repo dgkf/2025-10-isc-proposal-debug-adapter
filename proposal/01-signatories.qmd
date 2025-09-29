@@ -23,9 +23,7 @@ to the project.
 
 Long time R advocate with a passion for developer tooling, Doug has been
 involved in R Consortium projects since 2018 when Doug joined the R Validation
-Hub [@rvh], which he now chairs. Doug represents Genentech, Inc. on the board of
-the R Consortium, however this work is of personal interest and is not
-affiliated with his involvement in this capacity. Doug has a history of working
+Hub [@rvh], which he now chairs. Doug has a history of working
 on deeply technical projects that interface with the internals of R including
 [@typewriter] for runtime type-checking, [@testex] for embedding testable code
 alongside documentation, and by implementing an R interpreter [@r-rust]. Most
@@ -39,6 +37,12 @@ far more accommodating to the implementation of this standard.
 
 Doug is committed to making R an accessible language that provides effective
 tools regardless of IDE. 
+
+In transparency, Doug represents Genentech, Inc. on the board of the R
+Consortium, however this work is of personal interest and is not affiliated with
+his involvement in this capacity. Doug has recused himself from any activites
+related to ISC grant decision-making and will not accept funds as a part of
+this project.
 
 ### Mauricio Pachá Vargas Sepúlveda
 
@@ -90,7 +94,7 @@ considerable, sustained developer effort.
 ### Michael Lawrence of _R Core_
 
 Michael brings an awareness of R Core development practices and a familiarity
-with R Core expectations for new code contributions. Michael has along history
+with R Core expectations for new code contributions. Michael has a long history
 as a member of R Core and representative of the R Foundation a the R Consortium.
 He is exceptionally capable of serving as a conduit to the R Core team to ensure
 that the scope of our work is kept in-line with these expectations and that the

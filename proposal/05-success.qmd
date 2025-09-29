@@ -11,7 +11,7 @@ How will we know when success is achieved, what markers can we use
 along the way
 -->
 
-This work has significant potential that can be meaningfully advanced within six
+This work has significant potential that can be meaningfully advanced within three
 months, providing a solid foundation for future development.
 
 We would consider this phase of the project successful if we deliver a 
@@ -24,9 +24,9 @@ with the necessary R internal changes to support it.
 What does success look like?
 -->
 
-Although creating a production-ready DAP implementation is ambitious, the six-month
-timeline allows for thorough development and testing. We would consider our work
-complete after we have:
+Although creating a production-ready DAP implementation is ambitious, the
+three month timeline allows for thorough development and testing. We would
+consider our work complete after we have:
 
 1. **Delivered enhanced R internal capabilities** - A well-tested patch to R that
    extends browser hooks beyond current `USE_BROWSER_HOOKS` functionality
@@ -49,15 +49,15 @@ How could this be extended / developed in the future by yourself
 and/or the community in general?
 -->
 
-With a six-month development cycle, this work provides a strong foundation that
+With a three-month development cycle, this work provides a strong foundation that
 the R community can build upon. The extended timeline allows us to:
 
-**Immediate Impact (Months 1-6):**
+**Immediate Impact (Months 1-3):**
 - Deliver a working DAP implementation that users can install and use
 - Provide clear documentation and integration guides for multiple IDEs
 - Establish patterns and practices for R-native IDE integration
 
-**Medium-term Impact (6-12 months post-completion):**
+**Medium-term Impact (withn 3 months post-completion):**
 - Support community adoption and gather user feedback for refinement
 - Work with R Core on integration of our proposed language changes
 - Facilitate alignment between existing DAP projects (`vscDebugger`, `ark`)

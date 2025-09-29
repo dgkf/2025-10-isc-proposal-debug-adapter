@@ -27,15 +27,15 @@ modification and experimentation with code as it is running.
 
 Despite R's long standing support for interactive debugging, the user experience
 has not changed significantly, largely resembling the debug experience of
-Common Lisp. Although improving, it remains difficult to build custom tooling
-around the existing R debugging experience. The introduction of _browser hooks_,
-specifically, have provided a mechanism to inject additional code which can
-allow for arbitrarily complex actions to be taken during debugging. These tools
-offer the possibility of overcoming some of the challenges of introspecting the
-debug frame that have had to be painstakingly engineered around in projects such
-as `vscDebugger` and `ark`, requiring a wrapping process that attempts to
-extract information from command-line output or an overseer that manages
-communication between an R process and DAP server.
+Common Lisp. It remains difficult to build custom tooling around the existing
+R debugging experience. The introduction of _browser hooks_, specifically, have
+provided a mechanism to inject additional code which can allow for arbitrarily
+complex actions to be taken during debugging. These tools offer the possibility
+of overcoming some of the challenges of introspecting the debug frame that have
+had to be painstakingly engineered around in projects such as `vscDebugger`
+and `ark`, requiring a wrapping process that attempts to extract information
+from command-line output or an overseer that manages communication between an R
+process and DAP server.
 
 We are uniquely positioned to test new R features and provide active feedback to
 the R Core to drive the debugging experience forward. We plan to implement an
@@ -67,10 +67,11 @@ implemented, a user may:
 6. Install the DAP as an R package for easier distribution.
 7. Build the DAP R package with minimal system dependencies.
 
-We expect that this will require contributions to the R language itself, which we
-plan to first implement as a standalone, patched version of R with minimal changes
-in support of piloting the proposed capabilities. To proove the utility of these
-capabilities, we will develop a user-facing R package that implements a DAP server.
+We expect that this will require contributions to the R language itself, which
+we plan to first implement as a standalone, patched version of R with minimal
+changes in support of piloting the proposed capabilities. To proove the utility
+of these capabilities, we will develop a user-facing R package that implements a
+DAP server.
 
 ### Minimum Viable Product
 
@@ -89,11 +90,13 @@ responsive as the user continues to interact with the prompt. This challenge has
 been largely resolved by a transition to using the `later` package's event loop
 to handle messages in the background.
 - Second, it should hook into the `browser()` prompt to emit DAP messages.
-This has been largely solved by use of the `browser.hook` option in R's devel
-version.
+This has been somewhat solved by use of the `browser.hook` option in R's
+devel version, but additional hooks would improve the robustness of a DAP
+implementation.
 - Third, that existing browser hooks require cumbersome acrobatics to
 effectively tease out all the necessary debugging information at the appropriate
-time. <!-- TODO: more detail --> 
+time. Additional hooks for communicating about the state of the debug frame
+and execution will allow for a more comprehensive DAP implementation.
 - Fourth, many breakpoints are difficult to set given that many copies of
 functions exist throughout an active R session and that not all code has proper
 source references.
@@ -215,9 +218,9 @@ there are assumptions which may limit its impact:
 2. We assume that `ark` continues to be limited by base R capabilities to
    permit effective breakpoint injection, and that our development here would
    help pave the way for both projects.
-3. We assume that `ark` intends to continue being shipped as a standalone
+3. We assume that `ark` intends to continue being structured as a standalone
    binary, requiring that users go beyond a simple package install to enable
-   a debugger, leaving a gap for an implemntation as a more conventionally
+   a debugger, leaving a gap for an implementation as a more conventionally
    distributed R extension.
 4. We assume that `ark` will continue to be provided as a combined Jupyter
    Kernel and DAP implementation, making it less accessible to IDEs beyond
