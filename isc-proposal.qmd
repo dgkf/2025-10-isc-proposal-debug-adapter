@@ -1,7 +1,7 @@
 ---
 title: "Building a Path to Modern R Debugger Interfaces"
 author:
-  - name: Pachá
+  - name: Mauricio Pachá Vargas Sepúlveda
     orcid: 0000-0003-1017-7574
   - name: Doug Kelkhoff
     orcid: 0009-0003-7845-4061
