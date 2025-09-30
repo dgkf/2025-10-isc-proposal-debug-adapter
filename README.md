@@ -1,4 +1,4 @@
-# Building a Path to a Modern R Debugger Interfaces
+# Building a Path to Modern R Debugger Interfaces
 
 _an ISC Proposal for Oct 2025_
 

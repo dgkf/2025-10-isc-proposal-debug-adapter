@@ -1,5 +1,5 @@
 ---
-title: "Building a Path to a Modern R Debugger Interfaces"
+title: "Building a Path to Modern R Debugger Interfaces"
 author:
   - name: Pachá
     orcid: 0000-0003-1017-7574
